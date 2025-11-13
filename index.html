@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deala - Cashback, Coupons & Deals</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+    /* --- UNIFIED SECTION CONTAINER (1160px) --- */
+    .section-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* --- TOP BAR --- */
+    .top-bar {
+      background: #e6f7f7;
+      padding: 12px 0;
+      font-size: 15px;
+      color: #2d3748;
+    }
+
+    .top-bar .inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 15px;
+    }
+
+    .top-bar .left a {
+      color: #4a5568; font-weight: 500; display: flex; align-items: center; gap: 6px;
+    }
+
+    .top-bar .center { font-weight: 600; color: #1a202c; }
+
+    .top-bar .right svg {
+      width: 20px; height: 20px; fill: #4a5568;
+      margin-left: 14px; cursor: pointer;
+    }
+
+    /* --- HEADER --- */
+    .main-header {
+      background: #fff;
+      position: sticky; top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px; padding: 22px 0;
+    }
+
+    .logo {
+      display: flex; align-items: center;
+      font-size: 32px; font-weight: 700; color: #1e40af;
+    }
+
+    .logo img { width: 50px; height: 50px; margin-right: 10px; }
+
+    /* --- SEARCH BAR --- */
+    .search-bar {
+      flex: 1; max-width: 620px; display: flex;
+      background: #f7fafc; border-radius: 50px; overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar select,
+    .search-bar input {
+      padding: 15px 20px; border: none; background: transparent;
+      font-size: 15px; outline: none;
+    }
+
+    .search-bar select {
+      width: 180px; border-right: 1px solid #e2e8f0; color: #718096;
+    }
+
+    .search-bar input { flex: 1; }
+
+    .search-bar button {
+      background: #1e3a8a; color: #fff; border: none;
+      padding: 0 38px; border-radius: 50px; font-weight: 600;
+      cursor: pointer; transition: 0.3s;
+    }
+
+    .search-bar button:hover { background: #1e2a6b; }
+
+    /* --- HOTLINE + ICONS --- */
+    .hotline-wrapper {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+
+    .hotline {
+      display: flex; align-items: center;
+      background: #ecfeff; padding: 12px 24px; border-radius: 50px;
+      gap: 12px; font-size: 15px; color: #155e75; white-space: nowrap;
+    }
+
+    .hotline .icon-circle {
+      width: 40px; height: 40px;
+      background: #a7f3d0; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hotline .icon-circle svg {
+      width: 22px; height: 22px; fill: #0891b2;
+    }
+
+    .hotline .text strong {
+      display: block; font-weight: 600; color: #0c4a6e;
+      font-size: 15px;
+    }
+
+    .hotline .text span {
+      font-size: 13px; color: #0891b2;
+    }
+
+    .auth-icons {
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .auth-icons a {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; background: #f1f5f9;
+      border-radius: 50%; transition: background 0.3s;
+    }
+
+    .auth-icons a:hover {
+      background: #e2e8f0;
+    }
+
+    .auth-icons svg { width: 20px; height: 20px; fill: #475569; }
+
+    /* --- NAV MENU --- */
+    .nav-menu-wrapper {
+      border-top: 1px solid #e2e8f0; width: 100%; background: #fff;
+    }
+
+    .nav-menu {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 0; flex-wrap: wrap; gap: 20px;
+    }
+
+    .nav-left a {
+      margin-right: 30px; font-weight: 500; color: #4a5568; position: relative;
+    }
+
+    .nav-left a.active,
+    .nav-left a:hover { color: #ff6b35; }
+
+    .nav-left a.active::after {
+      content: ''; position: absolute; bottom: -8px; left: 0;
+      width: 100%; height: 3px; background: #ff6b35; border-radius: 2px;
+    }
+
+    .nav-right a { margin-left: 25px; font-size: 14px; color: #718096; }
+
+    /* --- HERO SECTION --- */
+    .hero-section { position: relative; margin-top: 5px; overflow: hidden; }
+
+    .hero-wide-wrapper {
+      max-width: 1500px; margin: 0 auto;
+      overflow: hidden; position: relative;
+    }
+
+    .slider-container {
+      position: relative; width: 100%; height: 480px; overflow: hidden;
+    }
+
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0; transition: opacity 0.6s ease-in-out; z-index: 0;
+      background-size: cover; background-position: center;
+    }
+
+    .slide.active { opacity: 1; z-index: 1; }
+
+    .hero-wide-wrapper::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.02); pointer-events: none;
+    }
+
+    .arrow {
+      position: absolute; top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.7);
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0; visibility: hidden; z-index: 10;
+    }
+
+    .hero-wide-wrapper:hover .arrow {
+      opacity: 1; visibility: visible;
+    }
+
+    .arrow:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
+
+    .arrow svg { width: 24px; height: 24px; fill: #1e3a8a; }
+
+    .arrow.left { left: 25px; }
+    .arrow.right { right: 25px; }
+
+    .unisex-badge {
+      position: absolute; top: 50%; right: 12%;
+      transform: translateY(-50%);
+      background: #e11d48; color: #fff; width: 130px; height: 130px;
+      border-radius: 50%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-weight: 700; text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(225, 29, 72, 0.5); line-height: 1.2;
+    }
+
+    .unisex-badge span:nth-child(1) { font-size: 16px; }
+    .unisex-badge span:nth-child(2) { font-size: 38px; }
+    .unisex-badge span:nth-child(3) { font-size: 20px; }
+
+    .slider-dots {
+      position: absolute; bottom: 25px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 12px;
+    }
+
+    .dot {
+      width: 12px; height: 12px; background: #fff;
+      border-radius: 50%; opacity: 0.6; cursor: pointer; transition: 0.3s;
+    }
+
+    .dot.active { opacity: 1; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4); }
+
+    /* --- CATEGORY BADGES --- */
+    .category-badges {
+      background: #fff; padding: 35px 0; margin: -60px auto 0;
+      border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      position: relative; z-index: 10; max-width: 1160px;
+    }
+
+    .badges-wrapper {
+      display: flex; align-items: center; overflow-x: auto;
+      padding: 0 20px; gap: 16px;
+      scrollbar-width: none;
+    }
+
+    .badges-wrapper::-webkit-scrollbar { display: none; }
+
+    .badge-item {
+      flex: 0 0 auto; background: #f0fdfa; color: #155e75;
+      padding: 14px 20px; border-radius: 16px;
+      font-weight: 500; text-align: center; min-width: 130px;
+      transition: all 0.3s ease; border: 1px solid #ccfbf1;
+      height: 70px; display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .badge-item .discount {
+      font-size: 13px; color: #6b7280; margin-bottom: 2px;
+    }
+
+    .badge-item .category {
+      font-size: 15px; font-weight: 600; color: #0c4a6e;
+    }
+
+    .badge-item:hover {
+      background: #ccfbf1; transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.15);
+    }
+
+    .see-all {
+      background: #10b981; color: #fff; border: none;
+      font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;
+      min-width: 130px; height: 70px; padding: 14px 20px; border-radius: 16px;
+      white-space: nowrap; text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .see-all svg {
+      width: 16px; height: 16px; fill: #fff;
+    }
+
+    .see-all:hover {
+      background: #059669; transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    /* --- RECOMMENDED FOR YOU SECTION --- */
+    .recommended-section {
+      margin: 80px 0;
+      background-color: #ffffff;
+    }
+
+    .recommended-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .recommended-title {
+      font-size: 28px; font-weight: 700; color: #1e293b;
+    }
+
+    .see-all-link {
+      display: flex; align-items: center; gap: 6px;
+      color: #0c4a6e; font-weight: 600; font-size: 15px;
+    }
+
+    .see-all-link svg {
+      width: 16px; height: 16px; fill: #0c4a6e;
+    }
+
+    .recommended-slider {
+      overflow: hidden; position: relative;
+    }
+
+    .recommended-wrapper {
+      display: flex; gap: 20px; overflow-x: auto;
+      padding-bottom: 10px; scrollbar-width: none;
+    }
+
+    .recommended-wrapper::-webkit-scrollbar { display: none; }
+
+    .deal-card {
+      flex: 0 0 375px; background: #fff;
+      border: 1px solid #ccfbf1; border-radius: 20px;
+      padding: 20px; display: flex; gap: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .deal-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.15);
+    }
+
+    .deal-img {
+      width: 100px; height: 100px; flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    .deal-content {
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .deal-price {
+      font-size: 20px; font-weight: 700; color: #f97316;
+    }
+
+    .deal-title {
+      font-size: 16px; font-weight: 600; color: #0c4a6e; margin: 4px 0;
+      line-height: 1.3;
+    }
+
+    .deal-date {
+      font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 4px;
+    }
+
+    .deal-date svg {
+      width: 14px; height: 14px; fill: #94a3b8;
+    }
+
+    .deal-discount {
+      background: #ff6b35; color: #fff; font-size: 12px; font-weight: 600;
+      padding: 2px 8px; border-radius: 6px; align-self: flex-start;
+    }
+
+    .slider-indicators {
+      display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+    }
+
+    .indicator {
+      width: 10px; height: 10px; background: #e2e8f0; border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .indicator.active {
+      background: #06b6d4; width: 24px; border-radius: 6px;
+    }
+
+    /* --- TOP TRENDING SHOPS SECTION (GRID LAYOUT) --- */
+    .trending-shops-section {
+      margin: 80px 0;
+      background-color: #00C2920D;
+    }
+
+    .trending-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .trending-title {
+      font-size: 28px; font-weight: 700; color: #1e293b;
+    }
+
+    .see-all-shops-link {
+      color: #0c4a6e; font-weight: 600; font-size: 15px;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    .see-all-shops-link svg {
+      width: 16px; height: 16px; fill: #0c4a6e;
+    }
+
+    /* GRID LAYOUT: 4 per row */
+    .shops-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .shops-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .shops-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .shops-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .shop-card {
+      background: #ffffff;
+      border: 1px solid #00C2923D; border-radius: 20px;
+      padding: 24px; text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.15);
+    }
+
+    .shop-badges {
+      display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;
+    }
+
+    .badge-featured {
+      background: #ccfbf1; color: #0c4a6e; padding: 4px 12px; border-radius: 12px;
+      font-size: 12px; font-weight: 600;
+    }
+
+    .badge-off {
+      background: #fed7aa; color: #9c4221; padding: 4px 12px; border-radius: 12px;
+      font-size: 12px; font-weight: 600;
+    }
+
+    .shop-logo {
+      width: 80px; height: 80px; border-radius: 50%;
+      margin: 0 auto 16px; object-fit: contain;
+      background: #fff; padding: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .shop-name {
+      font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 8px;
+    }
+
+    .shop-offer {
+      font-size: 15px; font-weight: 700; color: #0c4a6e; margin-bottom: 8px;
+    }
+
+    .shop-stats {
+      font-size: 13px; color: #64748b; margin-bottom: 16px;
+    }
+
+    .btn-view-deals {
+      background: transparent; color: #6b21a8; border: 1.5px solid #e9d5ff;
+      padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-view-deals:hover {
+      background: #f3e8ff; color: #5b21b6; border-color: #c4b5fd;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="inner">
+        <div class="left">
+          <a href="#">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            </svg> Find a Store
+          </a>
+        </div>
+        <div class="center">Get 35% Off with Code FG6556KD</div>
+        <div class="right">
+          <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 8v1A10.66 10.66 0 0 1 3 4s-4 9 5 13A11.64 11.64 0 0 1 1 20c9 5 20 0 20-11.5A4.5 4.5 0 0 0 23 3z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M19.75 2H4.25A2.25 2.25 0 0 0 2 4.25v15.5A2.25 2.25 0 0 0 4.25 22h15.5A2.25 2.25 0 0 0 22 19.75V4.25A2.25 2.25 0 0 0 19.75 2zM19 19H5V5h14v14z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo"><img src="images/fav_icon.svg" alt="Deala">Deala</div>
+        <div class="search-bar">
+          <select>
+            <option>Select Category</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home & Garden</option>
+          </select>
+          <input type="text" placeholder="Find Coupon...">
+          <button>Search</button>
+        </div>
+
+        <div class="hotline-wrapper">
+          <div class="hotline">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.22 11.11 11.11 0 003.48.56 1 1 0 011 1v3.5a1 1 0 01-1 1A18 18 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.11 11.11 0 00.56 3.48 1 1 0 01-.22 1.11l-2.2 2.2z"/></svg>
+            </div>
+            <div class="text">
+              <strong>Hotline: 196475</strong>
+              <span>Call us for free</span>
+            </div>
+          </div>
+
+          <div class="auth-icons">
+            <a href="#" title="Login">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </a>
+            <a href="#" title="Register">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-menu-wrapper">
+      <div class="container">
+        <div class="nav-menu">
+          <div class="nav-left">
+            <a href="#" class="active">Home</a>
+            <a href="#">Coupons</a>
+            <a href="#">Stores</a>
+            <a href="#">Categories</a>
+            <a href="#">Pages</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="nav-right">
+            <a href="#">Submit Coupon</a>
+            <a href="#">Support & FAQs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-wide-wrapper">
+      <div class="slider-container">
+        <div class="slide active" style="background-image:url('images/banner.webp');">
+          <div class="unisex-badge"><span>Unisex</span><span>40%</span><span>Off</span></div>
+        </div>
+        <div class="slide" style="background-image:url('images/banner2.webp');">
+          <div class="unisex-badge"><span>New</span><span>50%</span><span>Off</span></div>
+        </div>
+        <div class="slide" style="background-image:url('images/banner3.webp');">
+          <div class="unisex-badge"><span>Sale</span><span>30%</span><span>Off</span></div>
+        </div>
+      </div>
+
+      <div class="arrow left" id="prev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <div class="arrow right" id="next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+
+      <div class="slider-dots">
+        <div class="dot active" data-index="0"></div>
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <div class="category-badges">
+        <div class="badges-wrapper">
+          <div class="badge-item">
+            <div class="discount">Up to 25% OFF</div>
+            <div class="category">Accessories</div>
+          </div>
+          <div class="badge-item">
+            <div class="discount">Up to 15% OFF</div>
+            <div class="category">Beauty</div>
+          </div>
+          <div class="badge-item">
+            <div class="discount">Up to 10% OFF</div>
+            <div class="category">Electronics</div>
+          </div>
+          <div class="badge-item">
+            <div class="discount">Up to 30% OFF</div>
+            <div class="category">Clothing</div>
+          </div>
+          <div class="badge-item">
+            <div class="discount">Up to 35% OFF</div>
+            <div class="category">Shoes</div>
+          </div>
+          <div class="badge-item">
+            <div class="discount">Up to 18% OFF</div>
+            <div class="category">Jewelry</div>
+          </div>
+          <div class="badge-item see-all">
+            See All
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDED FOR YOU SECTION -->
+  <section class="recommended-section">
+    <div class="section-container">
+      <div class="recommended-header">
+        <h2 class="recommended-title">Recommended for you</h2>
+        <a href="#" class="see-all-link">
+          See All
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="recommended-slider">
+        <div class="recommended-wrapper">
+          <!-- Card 1 -->
+          <div class="deal-card">
+            <img src="images/chair1.jpg" alt="Chair" class="deal-img">
+            <div class="deal-content">
+              <div class="deal-price">$299</div>
+              <div class="deal-title">Todays Deals On Fire</div>
+              <div class="deal-date">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                30 Sep, 2025
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="deal-card">
+            <img src="images/chair2.jpg" alt="Chair" class="deal-img">
+            <div class="deal-content">
+              <div class="deal-price">$299</div>
+              <div class="deal-title">Todays Cashback Now</div>
+              <div class="deal-date">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                30 Sep, 2025
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="deal-card">
+            <img src="images/bike.webp" alt="Bike" class="deal-img">
+            <div class="deal-content">
+              <div>
+                <div class="deal-price">$400 <del>$450</del></div>
+                <div class="deal-title">Instant 55% Cashback</div>
+              </div>
+              <div>
+                <span class="deal-discount">-11%</span>
+                <div class="deal-date">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  30 Sep, 2025
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Indicators -->
+      <div class="slider-indicators">
+        <div class="indicator active"></div>
+        <div class="indicator"></div>
+        <div class="indicator"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP TRENDING SHOPS SECTION (GRID) -->
+  <section class="trending-shops-section">
+    <div class="section-container">
+      <div class="trending-header">
+        <h2 class="trending-title">Top Trending Shops</h2>
+        <a href="#" class="see-all-shops-link">
+          See All Shops
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="shops-grid">
+        <!-- Shop 1 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/aliexpress.webp" alt="AliExpress" class="shop-logo">
+          <div class="shop-name">AliExpress</div>
+          <div class="shop-offer">Get 30% Off Today!</div>
+          <div class="shop-stats">45 Deals • 250 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 2 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/xbox.webp" alt="Xbox Store" class="shop-logo">
+          <div class="shop-name">Xbox Store</div>
+          <div class="shop-offer">Enjoy a 15% discount</div>
+          <div class="shop-stats">45 Deals • 300 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 3 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/ebay.webp" alt="eBay" class="shop-logo">
+          <div class="shop-name">eBay</div>
+          <div class="shop-offer">Save Up to 40%</div>
+          <div class="shop-stats">30 Deals • 450 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 4 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/amazon.webp" alt="Amazon" class="shop-logo">
+          <div class="shop-name">Amazon</div>
+          <div class="shop-offer">Limited Time: 25% Off</div>
+          <div class="shop-stats">25 Deals • 350 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 5 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/bestbuy.webp" alt="Best Buy" class="shop-logo">
+          <div class="shop-name">Best Buy</div>
+          <div class="shop-offer">Up to 20% Off</div>
+          <div class="shop-stats">18 Deals • 120 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 6 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/yoox.webp" alt="Yoox" class="shop-logo">
+          <div class="shop-name">Yoox</div>
+          <div class="shop-offer">Extra 10% Cashback</div>
+          <div class="shop-stats">22 Deals • 180 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 7 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/costco.webp" alt="Costco" class="shop-logo">
+          <div class="shop-name">Costco</div>
+          <div class="shop-offer">Members Save More</div>
+          <div class="shop-stats">50 Deals • 400 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+
+        <!-- Shop 8 -->
+        <div class="shop-card">
+          <div class="shop-badges">
+            <span class="badge-featured">Featured</span>
+            <span class="badge-off">55% OFF</span>
+          </div>
+          <img src="images/hostinger.webp" alt="Hostinger" class="shop-logo">
+          <div class="shop-name">Hostinger</div>
+          <div class="shop-offer">90% Off Hosting</div>
+          <div class="shop-stats">12 Deals • 80 Offers Available</div>
+          <button class="btn-view-deals">View Deals</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let index = 0;
+    const total = slides.length;
+
+    function updateSlider() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    function nextSlide() { index = (index + 1) % total; updateSlider(); }
+    function prevSlide() { index = (index - 1 + total) % total; updateSlider(); }
+
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+    dots.forEach(dot => dot.addEventListener('click', () => {
+      index = parseInt(dot.dataset.index);
+      updateSlider();
+    }));
+
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>
