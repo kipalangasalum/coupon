@@ -1472,6 +1472,291 @@
     .recent-arrows .arrow:hover svg {
       fill: #6366f1;
     }
+
+
+    /* FOOTER – UPDATED STYLES ONLY */
+    .site-footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      font-size: 15px
+    }
+
+    /* TOP – LOGO + SOCIAL (right end) */
+    .footer-top {
+      padding: 40px 0 30px;
+      border-bottom: 1px solid #1e293b
+    }
+
+    .footer-brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px
+    }
+
+    .logo-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px
+    }
+
+    .social-circle {
+      width: 40px;
+      height: 40px;
+      background: #1e293b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s
+    }
+
+    .social-circle:hover {
+      background: #06b6d4;
+      transform: translateY(-3px)
+    }
+
+    .social-circle svg {
+      width: 18px;
+      height: 18px;
+      fill: #94a3b8;
+      transition: fill .3s
+    }
+
+    .social-circle:hover svg {
+      fill: #fff
+    }
+
+    /* MAIN – EQUAL SPACING + CENTERED BUTTON */
+    .footer-main {
+      padding: 50px 0
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      /* Quick Links gets slightly more width */
+      gap: 40px 80px;
+      /* 40px vertical, 80px horizontal → more space between cols */
+      align-items: start;
+    }
+
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      /* On tablet: Contact | Newsletter → Quick Links below */
+      .footer-col:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* newsletter column – button centered */
+    .newsletter-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start
+    }
+
+    .newsletter-form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: auto
+    }
+
+    .input-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 340px
+    }
+
+    .newsletter-input {
+      width: 100%;
+      padding: 14px 60px 14px 20px;
+      background: #1e293b;
+      border: none;
+      border-radius: 50px;
+      color: #cbd5e1;
+      font-size: 15px;
+      outline: none
+    }
+
+    .newsletter-input::placeholder {
+      color: #64748b
+    }
+
+    .newsletter-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: #f97316;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .3s
+    }
+
+    .newsletter-btn:hover {
+      background: #ea580c;
+      transform: translateY(-50%) scale(1.05)
+    }
+
+    .newsletter-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+      transform: rotate(-45deg)
+    }
+
+    /* titles, contact, quick-links (unchanged) */
+    .footer-title {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: #06b6d4;
+      border-radius: 2px
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      line-height: 1.5
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: #1e293b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #06b6d4
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 40px
+    }
+
+    .links-col li {
+      margin-bottom: 12px
+    }
+
+    .links-col a {
+      color: #94a3b8;
+      transition: color .3s
+    }
+
+    .links-col a:hover {
+      color: #06b6d4
+    }
+
+    /* FOOTER BOTTOM – ALWAYS HORIZONTAL */
+    .footer-bottom {
+      padding: 25px 0;
+      border-top: 1px solid #1e293b;
+      background: #0f172a;
+    }
+
+    .bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      /* Prevent wrapping */
+      overflow-x: auto;
+      /* Scroll horizontally if needed on tiny screens */
+      -webkit-overflow-scrolling: touch;
+      padding: 0 10px;
+      /* Small padding for mobile scroll */
+    }
+
+    .copyright {
+      font-size: 14px;
+      color: #64748b;
+      white-space: nowrap;
+      /* Keep text in one line */
+      margin: 0;
+    }
+
+    .payment-icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-shrink: 0;
+      /* Don't let icons shrink */
+    }
+
+    .payment-icons img {
+      height: 28px;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .payment-icons img:hover {
+      opacity: 1;
+    }
+
+    /* Optional: hide horizontal scrollbar but keep functionality */
+    .bottom-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bottom-inner {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 
@@ -2275,6 +2560,127 @@
     </div>
   </section>
 
+  <!-- FOOTER SECTION -->
+
+  <footer class="site-footer">
+    <!-- TOP – LOGO + SOCIAL (right-aligned) -->
+    <div class="footer-top">
+      <div class="section-container">
+        <div class="footer-brand-row">
+          <div class="logo-footer">
+            <img src="images/fav_icon.svg" alt="Deala" class="logo-icon">
+            <span>Deala</span>
+          </div>
+
+          <div class="social-icons">
+            <a href="#" class="social-circle"><svg viewBox="0 0 24 24">
+                <path
+                  d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.36 8.57 8.57 0 0 1-2.71 1.04 4.25 4.25 0 0 0-7.25 3.88 12.07 12.07 0 0 1-8.77-4.45 4.25 4.25 0 0 0 1.31 5.68c-.68-.02-1.32-.21-1.88-.52v.05c0 2.06 1.46 3.77 3.4 4.16-.36.1-.74.15-1.13.15-.28 0-.55-.03-.81-.08.55 1.71 2.14 2.95 4.03 2.99a8.52 8.52 0 0 1-5.28 1.82c-.34 0-.68-.02-1.01-.06a12.04 12.04 0 0 0 6.52 1.91c7.82 0 12.1-6.48 12.1-12.1 0-.18-.01-.37-.02-.55A8.63 8.63 0 0 0 24 5.55a8.43 8.43 0 0 1-2.54.7z" />
+              </svg></a>
+            <a href="#" class="social-circle"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.86 8.15 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 2.5-.34c.85.01 1.71.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48 3.98-1.34 6.83-5.08 6.83-9.49 0-5.5-4.46-9.96-9.96-9.96z" />
+              </svg></a>
+            <a href="#" class="social-circle"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.86 8.15 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 2.5-.34c.85.01 1.71.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48 3.98-1.34 6.83-5.08 6.83-9.49 0-5.5-4.46-9.96-9.96-9.96z" />
+              </svg></a>
+            <a href="#" class="social-circle"><svg viewBox="0 0 24 24">
+                <path
+                  d="M19.75 2H4.25A2.25 2.25 0 0 0 2 4.25v15.5A2.25 2.25 0 0 0 4.25 22h15.5A2.25 2.25 0 0 0 22 19.75V4.25A2.25 2.25 0 0 0 19.75 2zM19 19H5V5h14v14z" />
+              </svg></a>
+            <a href="#" class="social-circle"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.86 8.15 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 2.5-.34c.85.01 1.71.12 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48 3.98-1.34 6.83-5.08 6.83-9.49 0-5.5-4.46-9.96-9.96-9.96z" />
+              </svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN – THREE EQUAL-SPACED COLUMNS -->
+    <div class="footer-main">
+      <div class="section-container">
+        <div class="footer-grid">
+          <!-- Contact -->
+          <div class="footer-col">
+            <h3 class="footer-title">Contact</h3>
+            <ul class="contact-list">
+              <li><span class="contact-icon"><svg viewBox="0 0 24 24">
+                    <path
+                      d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.22 11.11 11.11 0 003.48.56 1 1 0 011 1v3.5a1 1 0 01-1 1A18 18 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.11 11.11 0 00.56 3.48 1 1 0 01-.22 1.11l-2.2 2.2z" />
+                  </svg></span>(316) 555-0116</li>
+              <li><span class="contact-icon"><svg viewBox="0 0 24 24">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg></span>info@deala@demo.com</li>
+              <li><span class="contact-icon"><svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg></span>123 Main Street, City, Country</li>
+            </ul>
+          </div>
+
+          <!-- Newsletter (centered button) -->
+          <div class="footer-col newsletter-col">
+            <h3 class="footer-title">Newsletter</h3>
+            <p class="newsletter-desc">Subscribe our newsletter to get our latest update and news</p>
+            <form class="newsletter-form">
+              <div class="input-wrapper">
+                <input type="email" placeholder="Email Address" class="newsletter-input">
+                <button type="submit" class="newsletter-btn">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-col">
+            <h3 class="footer-title">Quick Links</h3>
+            <div class="quick-links">
+              <ul class="links-col">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse Coupon</a></li>
+                <li><a href="#">Stores Alt</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+              <ul class="links-col">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Stores</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Share & Earn</a></li>
+                <li><a href="#">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      <div class="section-container">
+        <div class="bottom-inner">
+          <p class="copyright">Copyright © 2025 Deala. All rights reserved.</p>
+          <div class="payment-icons">
+            <img src="images/discover.svg" alt="Discover">
+            <img src="images/visa.svg" alt="Visa">
+            <img src="images/mastercard.svg" alt="Mastercard">
+            <img src="images/amex.svg" alt="Amex">
+            <img src="images/stripe.svg" alt="Stripe">
+            <img src="images/paypal.svg" alt="PayPal">
+            <img src="images/applepay.svg" alt="Apple Pay">
+            <img src="images/gpay.svg" alt="Google Pay">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script>
     // Hero Slider
     const slides = document.querySelectorAll('.slide');
@@ -2332,8 +2738,8 @@
       });
     });
 
-       // Recent Popular Deals Slider
-       const recentWrapper = document.querySelector('.recent-wrapper');
+    // Recent Popular Deals Slider
+    const recentWrapper = document.querySelector('.recent-wrapper');
     const recentPrev = document.getElementById('recentPrev');
     const recentNext = document.getElementById('recentNext');
 
