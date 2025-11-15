@@ -158,7 +158,7 @@
     }
 
     .nav-left a.active,
-    .nav-left a:hover { color: #ff6b35; }
+   .nav-left a:hover { color: #ff6b35; }
 
     .nav-left a.active::after {
       content: ''; position: absolute; bottom: -8px; left: 0;
@@ -409,30 +409,22 @@
       width: 16px; height: 16px; fill: #0c4a6e;
     }
 
-    /* GRID LAYOUT: 4 per row */
     .shops-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .shops-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .shops-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (max-width: 768px) {
-      .shops-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .shops-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
-      .shops-grid {
-        grid-template-columns: 1fr;
-      }
+      .shops-grid { grid-template-columns: 1fr; }
     }
 
     .shop-card {
@@ -488,6 +480,131 @@
 
     .btn-view-deals:hover {
       background: #f3e8ff; color: #5b21b6; border-color: #c4b5fd;
+    }
+
+    /* --- TOP CATEGORIES SECTION (12 items, 7 visible, arrows bottom-center) --- */
+    .top-categories-section {
+      margin: 80px 0;
+      background: #fff;
+    }
+
+    .top-categories-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .top-categories-title {
+      font-size: 28px; font-weight: 700; color: #1e293b;
+    }
+
+    .see-all-top {
+      display: flex; align-items: center; gap: 6px;
+      color: #0c4a6e; font-weight: 600; font-size: 15px;
+    }
+
+    .see-all-top svg { width: 16px; height: 16px; fill: #0c4a6e; }
+
+    .top-categories-wrapper {
+      position: relative;
+      padding-bottom: 50px;
+    }
+
+    .top-categories-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 0 10px 10px;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
+
+    .top-categories-track::-webkit-scrollbar { display: none; }
+
+    .category-card {
+      flex: 0 0 calc((100% - 120px) / 7);
+      max-width: 180px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform .3s ease;
+    }
+
+    .category-card:hover { transform: translateY(-6px); }
+
+    .category-card .circle {
+      width: 140px; height: 140px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background: #f0fdfa;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    .category-card .circle img {
+      width: 70%; height: 70%; object-fit: contain;
+    }
+
+    /* Individual background colors */
+    .category-card[data-cat="travel"] .circle { background: #fef3c7; }
+    .category-card[data-cat="sports"] .circle { background: #ecfdf5; }
+    .category-card[data-cat="shoe"] .circle { background: #fef9c7; }
+    .category-card[data-cat="jewelry"] .circle { background: #fdf2f8; }
+    .category-card[data-cat="health"] .circle { background: #f0fdfa; }
+    .category-card[data-cat="food"] .circle { background: #fefce8; }
+    .category-card[data-cat="fitness"] .circle { background: #ecfdf5; }
+    .category-card[data-cat="finance"] .circle { background: #dbeafe; }
+    .category-card[data-cat="fashion"] .circle { background: #fce7f3; }
+    .category-card[data-cat="entertainment"] .circle { background: #fef3c7; }
+    .category-card[data-cat="electronics"] .circle { background: #f3e8ff; }
+    .category-card[data-cat="education"] .circle { background: #fefce8; }
+
+    .category-card .label {
+      font-size: 15px; font-weight: 600; color: #0c4a6e;
+    }
+
+    /* Bottom-center arrows */
+    .top-cat-arrows {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .top-cat-arrow {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #5eead4;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .top-cat-arrow:hover {
+      background: #5eead4;
+      transform: scale(1.1);
+    }
+
+    .top-cat-arrow svg {
+      width: 18px; height: 18px; fill: #0c4a6e;
+    }
+
+    .top-cat-arrow:hover svg { fill: #fff; }
+
+    /* Responsive: show fewer on smaller screens */
+    @media (max-width: 1200px) {
+      .category-card { flex: 0 0 calc((100% - 100px) / 6); }
+    }
+    @media (max-width: 992px) {
+      .category-card { flex: 0 0 calc((100% - 80px) / 5); }
+    }
+    @media (max-width: 768px) {
+      .category-card { flex: 0 0 calc((100% - 60px) / 4); }
+    }
+    @media (max-width: 576px) {
+      .category-card { flex: 0 0 calc((100% - 40px) / 3); }
     }
   </style>
 </head>
@@ -648,7 +765,6 @@
 
       <div class="recommended-slider">
         <div class="recommended-wrapper">
-          <!-- Card 1 -->
           <div class="deal-card">
             <img src="images/chair1.jpg" alt="Chair" class="deal-img">
             <div class="deal-content">
@@ -661,7 +777,6 @@
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="deal-card">
             <img src="images/chair2.jpg" alt="Chair" class="deal-img">
             <div class="deal-content">
@@ -674,7 +789,6 @@
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="deal-card">
             <img src="images/bike.webp" alt="Bike" class="deal-img">
             <div class="deal-content">
@@ -694,7 +808,6 @@
         </div>
       </div>
 
-      <!-- Slider Indicators -->
       <div class="slider-indicators">
         <div class="indicator active"></div>
         <div class="indicator"></div>
@@ -715,7 +828,6 @@
       </div>
 
       <div class="shops-grid">
-        <!-- Shop 1 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -728,7 +840,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 2 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -741,7 +852,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 3 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -754,7 +864,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 4 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -767,7 +876,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 5 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -780,7 +888,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 6 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -793,7 +900,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 7 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -806,7 +912,6 @@
           <button class="btn-view-deals">View Deals</button>
         </div>
 
-        <!-- Shop 8 -->
         <div class="shop-card">
           <div class="shop-badges">
             <span class="badge-featured">Featured</span>
@@ -822,7 +927,85 @@
     </div>
   </section>
 
+  <!-- TOP CATEGORIES SECTION (12 items, 7 visible, arrows bottom-center) -->
+  <section class="top-categories-section">
+    <div class="section-container">
+      <div class="top-categories-header">
+        <h2 class="top-categories-title">Top Categories</h2>
+        <a href="#" class="see-all-top">
+          See All
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="top-categories-wrapper">
+        <div class="top-categories-track" id="topCatTrack">
+          <!-- 12 Categories -->
+          <div class="category-card" data-cat="travel">
+            <div class="circle"><img src="images/travel_cat.webp" alt="Travel"></div>
+            <div class="label">Travel</div>
+          </div>
+          <div class="category-card" data-cat="sports">
+            <div class="circle"><img src="images/sports_cat.webp" alt="Sports"></div>
+            <div class="label">Sports</div>
+          </div>
+          <div class="category-card" data-cat="shoe">
+            <div class="circle"><img src="images/shoe_cat.webp" alt="Shoe"></div>
+            <div class="label">Shoe</div>
+          </div>
+          <div class="category-card" data-cat="jewelry">
+            <div class="circle"><img src="images/jwelry_cat.webp" alt="Jewelry"></div>
+            <div class="label">Jewelry</div>
+          </div>
+          <div class="category-card" data-cat="health">
+            <div class="circle"><img src="images/health_cat.webp" alt="Health"></div>
+            <div class="label">Health</div>
+          </div>
+          <div class="category-card" data-cat="food">
+            <div class="circle"><img src="images/food_cat.webp" alt="Food"></div>
+            <div class="label">Food</div>
+          </div>
+          <div class="category-card" data-cat="fitness">
+            <div class="circle"><img src="images/fitness_cat.webp" alt="Fitness"></div>
+            <div class="label">Fitness</div>
+          </div>
+          <div class="category-card" data-cat="electronics">
+            <div class="circle"><img src="images/electronics_cat.webp" alt="Electronics"></div>
+            <div class="label">Electronics</div>
+          </div>
+          <div class="category-card" data-cat="fashion">
+            <div class="circle"><img src="images/fashion_cat.webp" alt="Fashion"></div>
+            <div class="label">Fashion</div>
+          </div>
+          <div class="category-card" data-cat="entertainment">
+            <div class="circle"><img src="images/entertainment_cat.webp" alt="Home"></div>
+            <div class="label">Entertainment</div>
+          </div>
+          <div class="category-card" data-cat="education">
+            <div class="circle"><img src="images/education_cat.webp" alt="Beauty"></div>
+            <div class="label">Education</div>
+          </div>
+          <div class="category-card" data-cat="finance">
+            <div class="circle"><img src="images/finance_cat.webp" alt="Beauty"></div>
+            <div class="label">Finance</div>
+          </div>
+        </div>
+
+        <!-- Bottom-center arrows -->
+        <div class="top-cat-arrows">
+          <div class="top-cat-arrow left" id="topCatPrev">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </div>
+          <div class="top-cat-arrow right" id="topCatNext">
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
+    // Hero Slider
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
     const prev = document.getElementById('prev');
@@ -831,9 +1014,7 @@
     const total = slides.length;
 
     function updateSlider() {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
       dots.forEach(d => d.classList.remove('active'));
       dots[index].classList.add('active');
     }
@@ -849,6 +1030,22 @@
     }));
 
     setInterval(nextSlide, 5000);
+
+    // Top Categories Scroll (dynamic card width)
+    const track = document.getElementById('topCatTrack');
+    const prevBtn = document.getElementById('topCatPrev');
+    const nextBtn = document.getElementById('topCatNext');
+
+    const card = track.querySelector('.category-card');
+    const cardWidth = card.offsetWidth + 20; // width + gap
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
